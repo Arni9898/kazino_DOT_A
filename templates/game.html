@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack Game</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .card-img {
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Blackjack Game</h1>
+<div id="cards">
+    <!-- Отображение карт игрока -->
+    {% for card in cards %}
+        <img class="card-img" src="{{ card.image }}" alt="Card">
+    {% endfor %}
+</div>
+<!-- Отображение текущего счета и оставшихся карт -->
+<h2>Очки: <span id="score">{{ score }}</span></h2>
+<h3>Осталось карт в колоде: {{ remaining }}</h3>
+
+<!-- Форма для вытягивания еще одной карты -->
+<form action="/draw_card" method="POST" class="mt-4">
+    <input type="hidden" name="deck_id" value="{{ deck_id }}">
+    <input type="hidden" name="score" value="{{ score }}">
+    <input type="hidden" name="remaining" value="{{ remaining }}">
+    {% for card in cards %}
+        <input type="hidden" name="cards" value="{{ card.image }}">
+    {% endfor %}
+    <input type="hidden" name="player_score" value="{{ player_score }}">
+    <button type="submit" class="btn btn-success">Вытянуть ещё карту</button>
+</form>
+
+<!-- Форма для перехода к ходу дилера -->
+<form action="/dealer_turn" method="POST" class="mt-2">
+    <input type="hidden" name="deck_id" value="{{ deck_id }}">
+    <input type="hidden" name="score" value="{{ score }}">
+    <input type="hidden" name="remaining" value="{{ remaining }}">
+    <input type="hidden" name="player_score" value="{{ player_score }}">
+    <button type="submit" class="btn btn-danger">Ход дилера</button>
+</form>
+
+</body>
+</html>

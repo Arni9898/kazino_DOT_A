@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack Game</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Отображение результатов игры -->
+<h1>{{ message }}</h1>
+<h2>Игрок: <span id="player_score">{{ player_score }}</span></h2>
+<h2>Дилер: <span id="dealer_score">{{ dealer_score }}</span></h2>
+<h3>Осталось карт в колоде: {{ remaining }}</h3>
+
+<!-- Форма для начала новой игры -->
+<form action="/" method="GET">
+    <button type="submit" class="btn btn-primary">Начать новую игру</button>
+</form>
+<img src="https://i.redd.it/lfmzao6jarp41.jpg" alt="Result Image" width="300" class="mt-4">
+</body>
+</html>

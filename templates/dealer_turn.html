@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealer's Turn</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .card-img {
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ход дилера</h1>
+<div id="dealer-cards">
+    <!-- Отображение карт дилера -->
+    {% for card in dealer_cards %}
+        <img class="card-img" src="{{ card.image }}" alt="Card">
+    {% endfor %}
+</div>
+<!-- Отображение счета дилера и оставшихся карт -->
+<h2>Очки дилера: <span id="score">{{ dealer_score }}</span></h2>
+<h3>Осталось карт в колоде: {{ remaining }}</h3>
+
+<!-- Форма для завершения игры и перехода на страницу с результатами -->
+<form action="/finish_game" method="POST" class="mt-4">
+    <input type="hidden" name="deck_id" value="{{ deck_id }}">
+    <input type="hidden" name="dealer_score" value="{{ dealer_score }}">
+    <input type="hidden" name="player_score" value="{{ player_score }}">
+    <input type="hidden" name="remaining" value="{{ remaining }}">
+    <button type="submit" class="btn btn-danger">Завершить игру</button>
+</form>
+
+</body>
+</html>
